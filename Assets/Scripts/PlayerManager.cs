@@ -9,9 +9,8 @@ public class PlayerManager : MonoBehaviour
     public float MaxPower;
     public float JumpLeft;
     public float MaxJump;
-    public float AmmoLeft;
-    public float MaxAmmo;
-    
+    public int AmmoLeft;
+    public int MaxAmmo;
 
     public PlayerManager()
     {

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float JumpPower = 10f;
     public float JumpUseRate = 2f;
     public float JumpRechargeRate = 1f;
+    public int MaxBullets = 10;
 
     private Rigidbody _rigidbody;
     private float _shootCooldown;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool _jumplock;
     private HPHandler _hpHandler;
     private NavMeshAgent _agent;
+    private int _bulletsLeft;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
 	    _jumplock = false;
 	    _hpHandler = GetComponent<HPHandler>();
 	    _agent = GetComponent<NavMeshAgent>();
+	    _bulletsLeft = MaxBullets;
 
 	}
 
@@ -62,8 +65,8 @@ public class PlayerController : MonoBehaviour
             PlayerManager.Instance.JumpLeft = _jumpRemaining;
             PlayerManager.Instance.MaxPower = _hpHandler.MaxPower;
             PlayerManager.Instance.PowerLeft = _hpHandler.Power;
-            PlayerManager.Instance.MaxAmmo = 1;
-            PlayerManager.Instance.AmmoLeft = 1;
+            PlayerManager.Instance.MaxAmmo = MaxBullets;
+            PlayerManager.Instance.AmmoLeft = _bulletsLeft;
         }
 
         if (Input.GetAxis("Vertical") > 0.01f)
@@ -126,10 +129,11 @@ public class PlayerController : MonoBehaviour
             _shootCooldown -= Time.deltaTime;
         }
 
-        if (Input.GetButton("Fire1") && _shootCooldown <= 0f)
+        if (Input.GetButton("Fire1") && _shootCooldown <= 0f && _bulletsLeft > 0)
         {
             Spawner.Shoot();
             _shootCooldown = ShootCoolDown;
+            _bulletsLeft--;
         }
 
         if (Input.GetButton("Jump")) //&& _jumpRemaining > 0f)
