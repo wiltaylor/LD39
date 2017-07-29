@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,11 +21,12 @@ public class PlayerController : MonoBehaviour
     private float _shootCooldown;
     private float _jumpRemaining;
     private bool _jumplock;
+    private HPHandler _hpHandler;
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "levelgeom")
-            _jumpRemaining = JumpPower;
+            _jumplock = false;
     }
 
 
@@ -33,15 +35,33 @@ public class PlayerController : MonoBehaviour
 	    _rigidbody = GetComponent<Rigidbody>();
 	    _jumpRemaining = JumpPower;
 	    _jumplock = false;
+	    _hpHandler = GetComponent<HPHandler>();
+
 	}
 
     void Update ()
     {
+        if (!_jumplock)
+        {
+            _jumpRemaining += JumpRechargeRate * Time.deltaTime;
+            if (_jumpRemaining > JumpPower)
+                _jumpRemaining = JumpPower;
+        }
 
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.MaxJump = JumpPower;
+            PlayerManager.Instance.JumpLeft = _jumpRemaining;
+            PlayerManager.Instance.MaxPower = _hpHandler.MaxPower;
+            PlayerManager.Instance.PowerLeft = _hpHandler.Power;
+            PlayerManager.Instance.MaxAmmo = 1;
+            PlayerManager.Instance.AmmoLeft = 1;
+        }
 
         if (Input.GetAxis("Vertical") > 0.01f)
         {
-            Speed += Acceleration;
+            if(!_jumplock)
+                Speed += Acceleration;
 
             if (Speed > Maxspeed)
                 Speed = Maxspeed;
@@ -50,10 +70,9 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(transform.forward * Speed * Time.deltaTime);
         }
 
-
-        if (Input.GetAxis("Vertical") < -0.01f)
+        if (Input.GetAxis("Vertical") < -0.01f & !_jumplock)
         {
-            Break += BreakForce;
+                Break += BreakForce;
 
             if (Break > Maxspeed)
                 Break = Maxspeed;
@@ -61,7 +80,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(-transform.forward * Break * Time.deltaTime);
         }
 
-        if (Input.GetAxis("Horizontal") < -0.01f)
+        if (Input.GetAxis("Horizontal") < -0.01f & !_jumplock)
         {
             transform.Rotate(0, -RotationSpeed * Time.deltaTime, 0 );
         }
@@ -99,6 +118,7 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.AddForce(Vector3.up * JumpSpeed * Time.deltaTime, ForceMode.Force);
             _jumpRemaining -= JumpUseRate * Time.deltaTime;
+            _jumplock = true;
         }
 
     }

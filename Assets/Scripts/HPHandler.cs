@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HPHandler : MonoBehaviour
 {
+    public float MaxPower = 100f;
     public float Power = 100f;
     public float ShowParticleSystemAt = 10f;
     public float DecayRate = 0.01f;

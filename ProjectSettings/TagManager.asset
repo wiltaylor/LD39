@@ -6,6 +6,7 @@ TagManager:
   tags:
   - player
   - ai
+  - levelgeom
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - units
+  - level
   - 
   - 
   - 
