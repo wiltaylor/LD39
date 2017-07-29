@@ -19,7 +19,7 @@ public class HPHandler : MonoBehaviour
     {
         if (Power <= 0f)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         Power -= DecayRate * Time.deltaTime;

@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
 	    _hpHandler = GetComponent<HPHandler>();
 	    _agent = GetComponent<NavMeshAgent>();
 	    _bulletsLeft = MaxBullets;
-
 	}
 
     void Update ()

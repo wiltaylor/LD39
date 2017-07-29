@@ -28,10 +28,15 @@ public class BulletHandler : MonoBehaviour {
         {
             other.SendMessage("Hit", Dmg);
         }
-             
+        
+        
         Destroy(gameObject, 0.5f);
-        DeathAnim.SetActive(true);
-        _render.enabled = false;
+
+        if(DeathAnim != null)
+            DeathAnim.SetActive(true);
+
+        if (_render != null)
+            _render.enabled = false;
     }
 
     void OnCollisionEnter(Collision collision)
