@@ -1,9 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
     public float Maxspeed;
+    public float MaxBreakSpeed;
     public float Acceleration;
     public float BreakForce;
     public float Speed;
@@ -22,11 +24,16 @@ public class PlayerController : MonoBehaviour
     private float _jumpRemaining;
     private bool _jumplock;
     private HPHandler _hpHandler;
+    private NavMeshAgent _agent;
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "levelgeom")
+        {
             _jumplock = false;
+            _agent.enabled = true;
+            _rigidbody.isKinematic = true;
+        }
     }
 
 
@@ -36,6 +43,7 @@ public class PlayerController : MonoBehaviour
 	    _jumpRemaining = JumpPower;
 	    _jumplock = false;
 	    _hpHandler = GetComponent<HPHandler>();
+	    _agent = GetComponent<NavMeshAgent>();
 
 	}
 
@@ -60,24 +68,34 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxis("Vertical") > 0.01f)
         {
-            if(!_jumplock)
+            if (!_jumplock)
                 Speed += Acceleration;
 
             if (Speed > Maxspeed)
                 Speed = Maxspeed;
 
-            
-            _rigidbody.AddForce(transform.forward * Speed * Time.deltaTime);
+
+            //_rigidbody.AddForce(transform.forward * Speed * Time.deltaTime);
+            _agent.velocity = transform.forward * Speed * Time.deltaTime;
+        }
+        else
+        {
+            Speed = 0f;
         }
 
         if (Input.GetAxis("Vertical") < -0.01f & !_jumplock)
         {
-                Break += BreakForce;
+            Break += BreakForce;
 
-            if (Break > Maxspeed)
-                Break = Maxspeed;
+            if (Break > MaxBreakSpeed)
+                Break = MaxBreakSpeed;
 
-            _rigidbody.AddForce(-transform.forward * Break * Time.deltaTime);
+            // _rigidbody.AddForce(-transform.forward * Break * Time.deltaTime);
+            _agent.velocity = -transform.forward * Break * Time.deltaTime;
+        }
+        else
+        {
+            Break = 0f;
         }
 
         if (Input.GetAxis("Horizontal") < -0.01f & !_jumplock)
@@ -114,9 +132,14 @@ public class PlayerController : MonoBehaviour
             _shootCooldown = ShootCoolDown;
         }
 
-        if (Input.GetButton("Jump") && _jumpRemaining > 0f)
+        if (Input.GetButton("Jump")) //&& _jumpRemaining > 0f)
         {
+            _agent.enabled = false;
+            _rigidbody.isKinematic = false;
             _rigidbody.AddForce(Vector3.up * JumpSpeed * Time.deltaTime, ForceMode.Force);
+            _rigidbody.AddForce(transform.forward * Speed * Time.deltaTime);
+            //_rigidbody.AddForce(_agent.velocity);
+            //_agent.velocity = Vector3.up * JumpSpeed * Time.deltaTime;
             _jumpRemaining -= JumpUseRate * Time.deltaTime;
             _jumplock = true;
         }
