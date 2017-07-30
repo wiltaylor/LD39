@@ -11,18 +11,24 @@ public class PlayerUIHandler : MonoBehaviour
     public Slider Jump;
     public Slider Ammo;
     public Image Topbar;
+    public Text TanksLeft;
     public GameObject WinText;
     public GameObject LoseText;
+    public GameObject QuitText;
 
 
     void Update()
     {
+
+        QuitText.SetActive(GameManager.Instance.QuitYesNoActive);
+
         if (LevelManager.Instance.CurrentMode != LevelManager.PlayMode.Playing)
         {
             Topbar.enabled = false;
             Power.gameObject.SetActive(false);
             Jump.gameObject.SetActive(false);
             Ammo.gameObject.SetActive(false);
+            TanksLeft.gameObject.SetActive(false);
         }
         else
         {
@@ -30,6 +36,7 @@ public class PlayerUIHandler : MonoBehaviour
             Power.gameObject.SetActive(true);
             Jump.gameObject.SetActive(true);
             Ammo.gameObject.SetActive(true);
+            TanksLeft.gameObject.SetActive(true);
         }
 
         if (PlayerManager.Instance != null)
@@ -46,6 +53,8 @@ public class PlayerUIHandler : MonoBehaviour
             Ammo.minValue = 0;
             Ammo.value = PlayerManager.Instance.AmmoLeft;
         }
+
+        TanksLeft.text = "Tanks Less: " + LevelManager.Instance.TanksLeft;
 
         if (LevelManager.Instance.CurrentMode == LevelManager.PlayMode.Winner)
         {

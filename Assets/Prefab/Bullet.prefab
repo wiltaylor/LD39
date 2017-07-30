@@ -144,6 +144,7 @@ MonoBehaviour:
   TimeToLive: 5
   Dmg: 10
   DeathAnim: {fileID: 1813795064020546}
+  Owner: {fileID: 0}
 --- !u!135 &135898800815855132
 SphereCollider:
   m_ObjectHideFlags: 1

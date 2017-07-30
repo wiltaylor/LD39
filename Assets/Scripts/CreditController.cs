@@ -20,6 +20,7 @@ public class CreditController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.DisableTargetingView();
         _rect = GetComponent<RectTransform>();
 
         for (var i = 0; i < transform.childCount; i++)

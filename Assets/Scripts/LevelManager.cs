@@ -21,6 +21,7 @@ namespace Assets.Scripts
         public PlayMode CurrentMode = PlayMode.Playing;
         public GameObject TankPrefab;
         public GameObject ObserverPrefab;
+        public int TanksLeft;
 
         [HideInInspector]
         public ObjectPool BulletPool;
@@ -46,15 +47,25 @@ namespace Assets.Scripts
 
         void Update()
         {
+            if (_tanks.All(t => !t.activeInHierarchy))
+            {
+                GameManager.Instance.ReloadLevel();
+                return;
+                
+            }
+
             if (Camera.main == null)
             {
                 _tanks.First(t => t.activeInHierarchy).GetComponent<TankController>().CameraObject.SetActive(true);
+                GameManager.Instance.DisableTargetingView();
             }
 
-            if(_tanks.Count(t => t.activeInHierarchy && t.GetComponent<TankController>().BrainType == TankController.BrainTypeEnum.Human) < 1)
+            TanksLeft = _tanks.Count(t => t.activeInHierarchy);
+
+            if (_tanks.Count(t => t.activeInHierarchy && t.GetComponent<TankController>().BrainType == TankController.BrainTypeEnum.Human) < 1)
                 CurrentMode = PlayMode.Lose;
 
-            if (_tanks.Count(t => t.activeInHierarchy) <= 1)
+            if (TanksLeft <= 1)
             {
                 var winningtank = _tanks.FirstOrDefault(t => t.activeInHierarchy);
 

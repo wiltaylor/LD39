@@ -8,6 +8,7 @@ public class BulletHandler : MonoBehaviour {
     public float TimeToLive = 5f;
     public float Dmg = 10f;
     public GameObject DeathAnim;
+    public GameObject Owner;
 
     private bool hit;
 
@@ -27,9 +28,14 @@ public class BulletHandler : MonoBehaviour {
     {
         hit = true;
 
+        //Stop you shooting yourself.
+        if (other.gameObject == Owner)
+            return;
+
         if (other.tag == "player" || other.tag == "ai")
         {
             other.SendMessage("Hit", Dmg);
+            other.SendMessage("HitBy", Owner);
         }
 
 

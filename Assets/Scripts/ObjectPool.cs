@@ -21,7 +21,9 @@ namespace Assets.Scripts
         {
             for (var count = 0; count < qty; count++)
             {
-                _pool.Add(Object.Instantiate(_prefab));
+                var obj = Object.Instantiate(_prefab);
+                obj.SetActive(false);
+                _pool.Add(obj);
             }
         }
 

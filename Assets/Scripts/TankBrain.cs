@@ -17,5 +17,8 @@ namespace Assets.Scripts
         public abstract void Update();
 
         public abstract void FixedUpdate();
+
+        public abstract void HitBy(GameObject attacker);
+
     }
 }

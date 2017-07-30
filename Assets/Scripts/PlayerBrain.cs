@@ -39,11 +39,14 @@ namespace Assets.Scripts
             _controller.StateText = "Player";
 
             _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
 
         }
 
         public override void Update()
         {
+
+            GameManager.Instance.EnableTargetingView();
 
             if (LevelManager.Instance.CurrentMode != LevelManager.PlayMode.Playing)
                 return;
@@ -75,10 +78,12 @@ namespace Assets.Scripts
                     _controller.Speed = _controller.Maxspeed;
 
                 _agent.velocity = _gameObject.transform.forward * _controller.Speed * Time.deltaTime;
+                _controller.SetRevUp(true);
             }
             else
             {
                 _controller.Speed = 0f;
+                _controller.SetRevUp(false);
             }
             
             if (Input.GetAxis("Vertical") < -0.01f & !_jumplock)
@@ -106,18 +111,6 @@ namespace Assets.Scripts
                 _gameObject.transform.Rotate(0, _controller.RotationSpeed * Time.deltaTime, 0);
             }
 
-            //if (Input.GetButton("Jump"))
-            //{
-            //    _agent.enabled = false;
-            //    _rigidbody.isKinematic = false;
-            //    _rigidbody.AddForce(Vector3.up * _controller.JumpSpeed * Time.deltaTime, ForceMode.Force);
-            //    _rigidbody.AddForce(_gameObject.transform.forward * _controller.Speed * Time.deltaTime);
-
-            //    _jumpRemaining -= _controller.JumpUseRate * Time.deltaTime;
-            //    _jumplock = true;
-
-            //}
-
             HandleTurret();
         }
 
@@ -138,6 +131,11 @@ namespace Assets.Scripts
 
         public override void FixedUpdate()
         {
+        }
+
+        public override void HitBy(GameObject attacker)
+        {
+            
         }
     }
 }

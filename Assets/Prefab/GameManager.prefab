@@ -52,4 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DemoMode: 0
-  Level: 1
+  Crosshair: {fileID: 2800000, guid: aa1b12b6f3b4d1843b21cb9e10765738, type: 3}
+  Level: 4
+  QuitYesNoActive: 0

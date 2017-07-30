@@ -30,10 +30,21 @@ namespace Assets.Scripts
         public AIBrain.AIState State;
         public BrainTypeEnum BrainType = BrainTypeEnum.AI;
         public GameObject CameraObject;
+        public AudioSource EngineSound;
+
+        public float IdleSound = 0.75f;
+        public float RevSound = 1.5f;
 
         public AudioSource ShootSound;
 
         private HPHandler _hpHandler;
+        private float _enginePitch;
+        private bool _revUp;
+
+        public void SetRevUp(bool revup)
+        {
+            _revUp = revup;
+        }
 
         public TankController(TankBrain brain)
         {
@@ -45,7 +56,6 @@ namespace Assets.Scripts
             AI,
             Human
         }
-
 
         void OnCollisionEnter(Collision collision)
         {
@@ -60,7 +70,7 @@ namespace Assets.Scripts
             BrainType = BrainTypeEnum.AI;
         }
 
-    public void MakeHuman()
+        public void MakeHuman()
         {
             CameraObject.SetActive(true);
             _brain = new PlayerBrain();
@@ -75,6 +85,9 @@ namespace Assets.Scripts
 
         void Update()
         {
+            _enginePitch = Mathf.Lerp(_enginePitch, _revUp ? RevSound : IdleSound, Time.deltaTime);
+            EngineSound.pitch = _enginePitch;
+
             if (CurrentShootCoolDown > 0f)
                 CurrentShootCoolDown -= Time.deltaTime;
 
@@ -85,6 +98,8 @@ namespace Assets.Scripts
 
         void FixedUpdate()
         {
+
+
             if (_brain != null)
                 _brain.FixedUpdate();
         }
@@ -133,6 +148,11 @@ namespace Assets.Scripts
 
             if (_hpHandler.Power > _hpHandler.MaxPower)
                 _hpHandler.Power = _hpHandler.MaxPower;
+        }
+
+        public void HitBy(GameObject attacker)
+        {
+            _brain.HitBy(attacker);
         }
     }
 }

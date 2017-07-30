@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     public float Force;
+    public GameObject Owner;
 	
 	public void Shoot ()
 	{
@@ -12,6 +13,7 @@ public class ProjectileSpawner : MonoBehaviour
 
 	    bullet.transform.position = transform.position;
 	    bullet.transform.rotation = transform.rotation;
+	    bullet.GetComponent<BulletHandler>().Owner = Owner;
         bullet.SetActive(true);
 
 	}

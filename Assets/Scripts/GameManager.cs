@@ -7,8 +7,11 @@ namespace Assets.Scripts
     {
         public static GameManager Instance;
         public bool DemoMode;
+        public Texture2D Crosshair;
 
         public int Level;
+
+        public bool QuitYesNoActive;
 
         void Awake()
         {
@@ -21,6 +24,34 @@ namespace Assets.Scripts
             }
 
             DontDestroyOnLoad(gameObject);
+        }
+
+        void Update()
+        {
+            if (Input.GetButton("Quit"))
+            {
+                if(Level == 0)
+                    Application.Quit();
+
+                if (Level == -1)
+                {
+                    LoadMenu();
+                    return;
+                }
+
+                QuitYesNoActive = true;
+            }
+
+            if (QuitYesNoActive && Input.GetButton("QuitYes"))
+            {
+                Application.Quit();
+            }
+
+            if (QuitYesNoActive && Input.GetButton("QuitNo"))
+            {
+                QuitYesNoActive = false;
+            }
+            
         }
 
         public void NextLevel()
@@ -41,6 +72,15 @@ namespace Assets.Scripts
                 case 1:
                     SceneManager.LoadScene("L1KillPit");
                     break;
+                case 2:
+                    SceneManager.LoadScene("L2Bridges");
+                    break;
+                case 3:
+                //    SceneManager.LoadScene("L3TheIsland");
+                //    break;
+                //case 4:
+                    SceneManager.LoadScene("L4LotsOfBridges");
+                    break;
                 default:
                     LoadCredits();
                     break;
@@ -57,6 +97,17 @@ namespace Assets.Scripts
         {
             Level = 0;
             SceneManager.LoadScene("Menu");
+        }
+
+        public void EnableTargetingView()
+        {
+            Cursor.SetCursor(Crosshair, new Vector2(0.32f, 0.32f), CursorMode.Auto);
+        }
+
+        public void DisableTargetingView()
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
         }
     }
 }

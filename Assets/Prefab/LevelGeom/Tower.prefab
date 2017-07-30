@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33599401132800842}
   - component: {fileID: 65224843338805392}
   - component: {fileID: 23555440562769034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (11)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4479141296865858}
   - component: {fileID: 114160616210806090}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: AINavPoint (1)
   m_TagString: navpoint
   m_Icon: {fileID: -6488666005112524639, guid: 0000000000000000d000000000000000, type: 0}
@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 33483890103547606}
   - component: {fileID: 65643814399195780}
   - component: {fileID: 23673030411459008}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 33964508440169540}
   - component: {fileID: 65549678507725058}
   - component: {fileID: 23805140023416038}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -92,9 +92,9 @@ GameObject:
   - component: {fileID: 33192654455084458}
   - component: {fileID: 136647191090713980}
   - component: {fileID: 23260203402477080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (2)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -110,9 +110,9 @@ GameObject:
   - component: {fileID: 33894598143515078}
   - component: {fileID: 65276685735179136}
   - component: {fileID: 23279421640104728}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -128,9 +128,9 @@ GameObject:
   - component: {fileID: 33367556131616454}
   - component: {fileID: 65854285399941776}
   - component: {fileID: 23904370272463130}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4424838135766204}
   - component: {fileID: 114017430025305588}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: AINavPoint
   m_TagString: navpoint
   m_Icon: {fileID: -6488666005112524639, guid: 0000000000000000d000000000000000, type: 0}
@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 23246466174866554}
   - component: {fileID: 114861845145256028}
   - component: {fileID: 65005584869090312}
+  - component: {fileID: 82430021772670914}
   m_Layer: 8
   m_Name: Ammobox
   m_TagString: pickup
@@ -197,9 +198,9 @@ GameObject:
   - component: {fileID: 33803231629540912}
   - component: {fileID: 65427085291494576}
   - component: {fileID: 23907180044909168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -215,9 +216,9 @@ GameObject:
   - component: {fileID: 33099276474617780}
   - component: {fileID: 65994530535437824}
   - component: {fileID: 23872541769610592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (9)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -234,6 +235,7 @@ GameObject:
   - component: {fileID: 23908819109599902}
   - component: {fileID: 114327387008553398}
   - component: {fileID: 65058169385150214}
+  - component: {fileID: 82070482507474482}
   m_Layer: 8
   m_Name: PowerPickup
   m_TagString: pickup
@@ -249,7 +251,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4052356585579220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,9 +269,9 @@ GameObject:
   - component: {fileID: 33924291834372182}
   - component: {fileID: 65020905793085920}
   - component: {fileID: 23506202537712896}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -285,9 +287,9 @@ GameObject:
   - component: {fileID: 33095544815414636}
   - component: {fileID: 65532351389029152}
   - component: {fileID: 23378108477136620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (10)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -303,9 +305,9 @@ GameObject:
   - component: {fileID: 33543571008598458}
   - component: {fileID: 65485972540400286}
   - component: {fileID: 23820954726222798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -321,9 +323,9 @@ GameObject:
   - component: {fileID: 33224842445825686}
   - component: {fileID: 65478878346158810}
   - component: {fileID: 23112621696538614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -339,9 +341,9 @@ GameObject:
   - component: {fileID: 33764698718654258}
   - component: {fileID: 136518777726107944}
   - component: {fileID: 23278694331955922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -373,9 +375,9 @@ GameObject:
   - component: {fileID: 33188287357107614}
   - component: {fileID: 64133269666197336}
   - component: {fileID: 23416207581765498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -391,9 +393,9 @@ GameObject:
   - component: {fileID: 33252158524938432}
   - component: {fileID: 136394610810880386}
   - component: {fileID: 23556306650101600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -425,9 +427,9 @@ GameObject:
   - component: {fileID: 33033717865552922}
   - component: {fileID: 65679429414716410}
   - component: {fileID: 23164946607728516}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -443,9 +445,9 @@ GameObject:
   - component: {fileID: 33278722788317118}
   - component: {fileID: 136023239362344758}
   - component: {fileID: 23715248964134850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (3)
-  m_TagString: Untagged
+  m_TagString: levelgeom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1722,6 +1724,166 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82070482507474482
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457796926756042}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a0e44176b7ed9b043bb966dae401be17, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82430021772670914
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258205310720028}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a0e44176b7ed9b043bb966dae401be17, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114017430025305588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1770,6 +1932,7 @@ MonoBehaviour:
   Power: 100
   RotateSpeed: 100
   CoolDown: 10
+  PickupSound: {fileID: 82070482507474482}
 --- !u!114 &114355105861124174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1807,6 +1970,7 @@ MonoBehaviour:
   Power: 0
   RotateSpeed: 100
   CoolDown: 10
+  PickupSound: {fileID: 82430021772670914}
 --- !u!136 &136023239362344758
 CapsuleCollider:
   m_ObjectHideFlags: 1

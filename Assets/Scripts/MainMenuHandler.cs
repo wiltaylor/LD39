@@ -8,6 +8,11 @@ namespace Assets.Scripts
 {
     public class MainMenuHandler : MonoBehaviour
     {
+        void Start()
+        {
+            GameManager.Instance.DisableTargetingView();
+        }
+
         void Update()
         {
             if (Input.GetButton("Jump"))

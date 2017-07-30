@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
@@ -46,6 +48,8 @@ namespace Assets.Scripts
 
             _currentState = AIState.Search;
             _controller = obj.GetComponent<TankController>();
+
+            _controller.EngineSound.volume = 0.5f;
         }
 
         public override void Update()
@@ -75,9 +79,23 @@ namespace Assets.Scripts
             }
         }
 
+        public override void HitBy(GameObject attacker)
+        {
+            if (_currentState == AIState.Search || _currentState == AIState.GetPowerUp)
+            {
+                _AttackTarget = attacker;
+                _currentState = AIState.LookingFor;
+                _LookingForTimeOut = LookForTime;
+            }
+        }
+
         private void GetPowerUpUpdate()
         {
-            _controller.StateText = "GetPowerup";
+            AttackEnemyIfSeen();
+
+            if (_currentState != AIState.GetPowerUp)
+                return;
+
             if (_AttackTarget == null || _agent.remainingDistance < NabMeshPointTollerance || _AttackTarget.activeInHierarchy == false)
             {
                 _currentState = AIState.Search;
@@ -87,8 +105,11 @@ namespace Assets.Scripts
 
         private void LookingForUpdate()
         {
-            _controller.StateText = "LookingFor";
-            
+            //AttackEnemyIfSeen();
+
+            if (_currentState != AIState.LookingFor)
+                return;
+
             _LookingForTimeOut -= Time.deltaTime;
 
             if (_AttackTarget == null || _LookingForTimeOut < 0f || _AttackTarget.activeInHierarchy == false)
@@ -105,6 +126,27 @@ namespace Assets.Scripts
                 _agent.isStopped = true;
                 _currentState = AIState.Attack;
             }
+        }
+
+        private Collider[] GetAllCanSee()
+        {
+            return Physics.OverlapSphere(_controller.Spawner.transform.position, SeeDistance, _searchLayer);
+        }
+
+        private GameObject FirstEnemySeen(IEnumerable<Collider> colliders)
+        {
+            var result = colliders.FirstOrDefault(c => c.gameObject != _gameObject &&
+                                                 c.gameObject.CompareTag("player"));
+
+            return result != null ? result.gameObject : null;
+        }
+
+        private GameObject FirstPickupSeen(IEnumerable<Collider> colliders)
+        {
+            var result = colliders.FirstOrDefault(c => c.gameObject != _gameObject &&
+                                                       c.gameObject.CompareTag("pickup"));
+
+            return result != null ? result.gameObject : null;
         }
 
         private bool CanSeeTarget()
@@ -141,6 +183,15 @@ namespace Assets.Scripts
                 return;
             }
 
+            //Checking if out of ammo
+            if (_controller.BulletsLeft < 1)
+            {
+                _AttackTarget = null;
+                _currentState = AIState.Search;
+                MoveToRandomNode();
+                return;
+            }
+
             _agent.isStopped = true;
             _controller.AimCannon(_AttackTarget.transform.position);
 
@@ -160,30 +211,37 @@ namespace Assets.Scripts
             }
         }
 
+        private IEnumerable<Collider> AttackEnemyIfSeen()
+        {
+            var objects = GetAllCanSee();
+            var tank = FirstEnemySeen(objects);
+
+            if (tank == null || _controller.BulletsLeft <= 0) return objects;
+
+            _AttackTarget = tank;
+            _currentState = AIState.Attack;
+            _agent.isStopped = true;
+
+            return objects;
+        }
+
         private void SearchUpdate()
         {
-            var hits = Physics.OverlapSphere(_controller.Spawner.transform.position, SeeDistance, _searchLayer);
 
-            foreach (var h in hits)
+            var objs = AttackEnemyIfSeen();
+
+            if (_currentState != AIState.Search)
+                return;
+
+            var pickup = FirstPickupSeen(objs);
+
+            if (pickup != null)
             {
-                if (h.gameObject == _gameObject)
-                    continue;
-
-                _AttackTarget = h.gameObject;
-
-                if (h.CompareTag("player"))
-                {
-                    _currentState = AIState.Attack;
-                    _agent.isStopped = true;
-                    return;
-                }
-                if (h.CompareTag("pickup"))
-                {
-                    _currentState = AIState.GetPowerUp;
-                    _agent.destination = _AttackTarget.transform.position;
-                    _agent.isStopped = false;
-                    return;
-                }
+                _AttackTarget = pickup;
+                _currentState = AIState.GetPowerUp;
+                _agent.isStopped = false;
+                _agent.destination = pickup.transform.position;
+                return;
             }
 
             if (_agent.remainingDistance < NabMeshPointTollerance)
