@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class HPHandler : MonoBehaviour
@@ -17,6 +18,9 @@ public class HPHandler : MonoBehaviour
 
     private void Update()
     {
+        if (LevelManager.Instance.CurrentMode == LevelManager.PlayMode.Winner)
+            return;
+
         if (Power <= 0f)
         {
             gameObject.SetActive(false);

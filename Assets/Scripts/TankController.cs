@@ -77,13 +77,15 @@ namespace Assets.Scripts
             if (CurrentShootCoolDown > 0f)
                 CurrentShootCoolDown -= Time.deltaTime;
 
-            _brain.Update();
+            if(_brain != null)
+                _brain.Update();
 
         }
 
         void FixedUpdate()
         {
-            _brain.FixedUpdate();
+            if (_brain != null)
+                _brain.FixedUpdate();
         }
 
         public bool CanShoot()

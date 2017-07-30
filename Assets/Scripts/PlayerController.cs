@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -51,6 +52,9 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
+        if (LevelManager.Instance.CurrentMode != LevelManager.PlayMode.Playing)
+            return;
+        
         if (!_jumplock)
         {
             _jumpRemaining += JumpRechargeRate * Time.deltaTime;

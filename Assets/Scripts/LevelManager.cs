@@ -6,12 +6,20 @@ namespace Assets.Scripts
 {
     public class LevelManager : MonoBehaviour
     {
+        public enum PlayMode
+        {
+            Playing,
+            Lose,
+            Winner
+        }
+
+
         public static LevelManager Instance;
 
+        public PlayMode CurrentMode = PlayMode.Playing;
         public GameObject TankPrefab;
         public GameObject ObserverPrefab;
-        private List<GameObject> _tanks = new List<GameObject>();
-        private GameObject _observer;
+        private readonly List<GameObject> _tanks = new List<GameObject>();
 
         public bool Observe;
         
@@ -33,8 +41,27 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if(Camera.main == null)
-                _observer.SetActive(true);
+            if (Camera.main == null)
+            {
+                _tanks.First(t => t.activeInHierarchy).GetComponent<TankController>().CameraObject.SetActive(true);
+            }
+
+            if(_tanks.Count(t => t.activeInHierarchy && t.GetComponent<TankController>().BrainType == TankController.BrainTypeEnum.Human) < 1)
+                CurrentMode = PlayMode.Lose;
+
+            if (_tanks.Count(t => t.activeInHierarchy) <= 1)
+            {
+                var winningtank = _tanks.FirstOrDefault(t => t.activeInHierarchy);
+
+                if (winningtank == null)
+                {
+                    GameManager.Instance.ReloadLevel();
+                }
+
+                if(winningtank.GetComponent<TankController>().BrainType == TankController.BrainTypeEnum.Human)
+                    CurrentMode = PlayMode.Winner;
+            }
+                
         }
 
         void Awake()
@@ -43,10 +70,6 @@ namespace Assets.Scripts
             SpawnPoints = gameObject.GetComponentsInChildren<SpawnPointInfo>();
 
             bool setPlayerTank = !Observe;
-
-            _observer = Instantiate(ObserverPrefab);
-            _observer.transform.position = NavPoints[0].transform.position;
-            _observer.SetActive(Observe);
 
             foreach (var point in SpawnPoints)
             {
