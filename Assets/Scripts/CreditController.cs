@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
+using Assets.Scripts;
 
 public class CreditController : MonoBehaviour
 {
@@ -74,5 +76,10 @@ public class CreditController : MonoBehaviour
             if (_creditItems.Count == 0)
                 _lastItem = item;
         }
+    }
+
+    public void MainMenu()
+    {
+        GameManager.Instance.LoadMenu();
     }
 }

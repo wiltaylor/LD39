@@ -12,10 +12,13 @@ public class HPHandler : MonoBehaviour
     public GameObject ParticleSystem;
     public GameObject DeathPrefab;
     public float DeathLength = 1f;
+    public AudioSource HitSound;
 
     public void Hit(float dmg)
     {
         Power -= dmg;
+
+        HitSound.Play();
     }
 
     private void Update()

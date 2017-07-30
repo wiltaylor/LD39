@@ -80,7 +80,7 @@ namespace Assets.Scripts
 
             foreach (var point in SpawnPoints)
             {
-                var tank = Instantiate(TankPrefab);
+                var tank = Instantiate(TankPrefab, point.transform.position, Quaternion.identity);
                 var controller = tank.GetComponent<TankController>();
 
                 if (setPlayerTank)
@@ -93,7 +93,6 @@ namespace Assets.Scripts
                     controller.MakeAI();
                 }
 
-                tank.transform.position = point.transform.position;
                 tank.SetActive(true);
 
                 _tanks.Add(tank);

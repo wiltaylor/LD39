@@ -44,6 +44,10 @@ namespace Assets.Scripts
 
         public override void Update()
         {
+
+            if (LevelManager.Instance.CurrentMode != LevelManager.PlayMode.Playing)
+                return;
+
             if (!_jumplock)
             {
                 _jumpRemaining += _controller.JumpRechargeRate * Time.deltaTime;

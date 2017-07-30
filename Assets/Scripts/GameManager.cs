@@ -6,6 +6,7 @@ namespace Assets.Scripts
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public bool DemoMode;
 
         public int Level;
 
@@ -49,7 +50,7 @@ namespace Assets.Scripts
         public void LoadCredits()
         {
             Level = -1;
-            LoadMenu();
+            SceneManager.LoadScene("Credits");
         }
 
         public void LoadMenu()

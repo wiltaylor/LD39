@@ -12,6 +12,7 @@ public class PickupHandler : MonoBehaviour
     private MeshRenderer _mesh;
     private BoxCollider _colider;
     private float _currentCooldown = 0f;
+    public AudioSource PickupSound;
 
     void Start()
     {
@@ -48,5 +49,6 @@ public class PickupHandler : MonoBehaviour
         _mesh.enabled = false;
         _colider.enabled = false;
         _currentCooldown = CoolDown;
+        PickupSound.Play();
     }
 }

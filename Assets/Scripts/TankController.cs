@@ -31,6 +31,8 @@ namespace Assets.Scripts
         public BrainTypeEnum BrainType = BrainTypeEnum.AI;
         public GameObject CameraObject;
 
+        public AudioSource ShootSound;
+
         private HPHandler _hpHandler;
 
         public TankController(TankBrain brain)
@@ -69,7 +71,6 @@ namespace Assets.Scripts
         void Start()
         {
             _hpHandler = GetComponent<HPHandler>();
-            _brain.OnStart(gameObject);
         }
 
         void Update()
@@ -96,8 +97,11 @@ namespace Assets.Scripts
         public void ShootCannon()
         {
             if (!CanShoot())
+            {
                 return;
+            }
 
+            ShootSound.Play();
             Spawner.Shoot();
             CurrentShootCoolDown = ShootCoolDown;
             BulletsLeft--;
@@ -108,6 +112,11 @@ namespace Assets.Scripts
             var targetRotation = Quaternion.LookRotation(point - TurretTransform.position);
             TurretTransform.rotation = targetRotation;
 
+        }
+
+        public void ResetCannonAim()
+        {
+            TurretTransform.rotation = Quaternion.identity;
         }
 
         public void GetBullets(int bullets)

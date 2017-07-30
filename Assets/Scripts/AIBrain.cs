@@ -186,12 +186,6 @@ namespace Assets.Scripts
                 }
             }
 
-            if (float.IsInfinity(_agent.remainingDistance))
-            {
-                Debug.Log("Object has come off navmesha gain :(");
-                _gameObject.SetActive(false);
-            }
-
             if (_agent.remainingDistance < NabMeshPointTollerance)
             {
                 MoveToRandomNode();
