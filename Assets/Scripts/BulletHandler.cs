@@ -12,13 +12,16 @@ public class BulletHandler : MonoBehaviour {
     private bool hit;
 
     private MeshRenderer _render;
+    private float _timeleft;
 
-    void Start ()
-	{
-        Destroy(gameObject, TimeToLive);
-	    _render = GetComponent<MeshRenderer>();
-
-	}
+    void OnEnable()
+    {
+        hit = false;
+        _timeleft = TimeToLive;
+       _render = GetComponent<MeshRenderer>();
+        _render.enabled = true;
+        DeathAnim.SetActive(false);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -28,34 +31,25 @@ public class BulletHandler : MonoBehaviour {
         {
             other.SendMessage("Hit", Dmg);
         }
-        
-        
-        Destroy(gameObject, 0.5f);
 
-        if(DeathAnim != null)
+
+        _timeleft = 0.5f;
+
+        if (DeathAnim != null)
             DeathAnim.SetActive(true);
 
         if (_render != null)
             _render.enabled = false;
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        hit = true;
-
-        if (collision.transform.tag == "player" || collision.transform.tag == "ai")
-        {
-            collision.transform.SendMessage("Hit", Dmg);
-        }
-
-        Destroy(gameObject, 0.5f);
-        DeathAnim.SetActive(true);
-        _render.enabled = false;
-    }
-
     void Update()
     {
+        _timeleft -= Time.deltaTime;
+
+        if(_timeleft < 0f)
+            gameObject.SetActive(false);
+
         if(!hit)
-        transform.position += transform.forward * Speed * Time.deltaTime; 
+            transform.position += transform.forward * Speed * Time.deltaTime; 
     }
 }

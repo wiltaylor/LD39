@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L1KillPit.unity
     guid: 8d9831294d7d8fe49b0a91f219ba9ca8
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 83d4e49f89c9a8c4eb83f271fae17df1

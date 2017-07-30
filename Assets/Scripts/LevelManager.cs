@@ -16,9 +16,14 @@ namespace Assets.Scripts
 
         public static LevelManager Instance;
 
+        public GameObject BulletPrefab;
+        public int NumberOfBulletsInPool = 200;
         public PlayMode CurrentMode = PlayMode.Playing;
         public GameObject TankPrefab;
         public GameObject ObserverPrefab;
+
+        [HideInInspector]
+        public ObjectPool BulletPool;
         private readonly List<GameObject> _tanks = new List<GameObject>();
 
         public bool Observe;
@@ -68,6 +73,8 @@ namespace Assets.Scripts
         {
             NavPoints = gameObject.GetComponentsInChildren<NavPointInfo>();
             SpawnPoints = gameObject.GetComponentsInChildren<SpawnPointInfo>();
+
+            BulletPool = new ObjectPool(NumberOfBulletsInPool, BulletPrefab); 
 
             bool setPlayerTank = !Observe;
 

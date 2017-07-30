@@ -457,6 +457,9 @@ MonoBehaviour:
   ShowParticleSystemAt: 10
   DecayRate: 1
   ParticleSystem: {fileID: 1858969725159788}
+  DeathPrefab: {fileID: 1468385685942964, guid: ea36a040fb739e44782163227a269628,
+    type: 2}
+  DeathLength: 1
 --- !u!124 &124311936219235228
 Behaviour:
   m_ObjectHideFlags: 1
