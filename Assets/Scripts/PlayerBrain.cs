@@ -102,17 +102,17 @@ namespace Assets.Scripts
                 _gameObject.transform.Rotate(0, _controller.RotationSpeed * Time.deltaTime, 0);
             }
 
-            if (Input.GetButton("Jump"))
-            {
-                _agent.enabled = false;
-                _rigidbody.isKinematic = false;
-                _rigidbody.AddForce(Vector3.up * _controller.JumpSpeed * Time.deltaTime, ForceMode.Force);
-                _rigidbody.AddForce(_gameObject.transform.forward * _controller.Speed * Time.deltaTime);
+            //if (Input.GetButton("Jump"))
+            //{
+            //    _agent.enabled = false;
+            //    _rigidbody.isKinematic = false;
+            //    _rigidbody.AddForce(Vector3.up * _controller.JumpSpeed * Time.deltaTime, ForceMode.Force);
+            //    _rigidbody.AddForce(_gameObject.transform.forward * _controller.Speed * Time.deltaTime);
 
-                _jumpRemaining -= _controller.JumpUseRate * Time.deltaTime;
-                _jumplock = true;
+            //    _jumpRemaining -= _controller.JumpUseRate * Time.deltaTime;
+            //    _jumplock = true;
 
-            }
+            //}
 
             HandleTurret();
         }
